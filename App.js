@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 // Array com os caminhos das imagens dos dados (1 a 6)
 const faces = [
@@ -54,6 +54,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      {/* Faixa roxa no topo */}
+      <View style={styles.fixaRoxa}></View>
+
       <Text style={styles.title}>Jogo de Dados</Text>
 
       {/* Exibição dos dados */}
@@ -72,7 +75,9 @@ export default function App() {
       </View>
 
       {/* Botão para rolar os dados */}
-      <Button title="Jogar Dados" onPress={rolarDados} />
+      <TouchableOpacity style={styles.botaoJogar} onPress={rolarDados}>
+        <Text style={styles.botaoTexto}>Jogar Dados</Text>
+      </TouchableOpacity>
 
       {/* Exibição do resultado da rodada */}
       <Text style={styles.resultado}>{resultado()}</Text>
@@ -93,10 +98,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#0F9D58',
   },
+  fixaRoxa: {
+    width: '100%',
+    height: 30, // Tamanho da faixa roxa
+    backgroundColor: '#8E24AA', // Cor roxa
+    position: 'absolute',
+    top: 0, // Fixa no topo
+  },
   title: {
     fontSize: 30,
     marginBottom: 20,
     fontWeight: 'bold',
+    color: '#fff', // Cor do título
   },
   dadosContainer: {
     flexDirection: 'row',
@@ -128,5 +141,17 @@ const styles = StyleSheet.create({
   placar: {
     fontSize: 20,
     marginVertical: 5,
+  },
+  botaoJogar: {
+    backgroundColor: '#6200EE', // Cor roxa
+    paddingVertical: 15,
+    paddingHorizontal: 40,
+    borderRadius: 5,
+    marginVertical: 20,
+  },
+  botaoTexto: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff', // Cor do texto do botão
   },
 });
